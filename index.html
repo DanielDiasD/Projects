@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Icones -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <title>Cadastro de Pessoas</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-cadastro-tab" data-toggle="tab" href="#nav-cadastro"
+                    role="tab" aria-controls="nav-cadastro" aria-selected="true">Cadastro</a>
+                <a class="nav-item nav-link" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab"
+                    aria-controls="nav-all" aria-selected="false" onclick="consulta_registros()">Todos</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-cadastro" role="tabpanel" aria-labelledby="nav-cadastro-tab">
+                <form id="form_cadastro">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Tipo de Pessoa</label>
+                                <select name="pessoa" id="pessoa" class="form-control">
+                                    <option>Pessoa Física</option>
+                                    <option>Pessoa Jurídica</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label id="lblNome">Nome *</label>
+                                <input type="text" name="nome" id="nome" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label id="lblcpf_cnpj">CPF *</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" name="cpf_cnpj" id="cpf_cnpj" class="form-control" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" style="display: none;" type="button"
+                                            id="btncnpj" onclick="consulta_cnpj()"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="field-razao" class="col-sm-3" style="display: none;">
+                            <div class="form-group">
+                                <label>Razão Social *</label>
+                                <input type="text" name="razao" id="razao" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Endereço *</label>
+                                <input type="text" name="endereco" id="endereco" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Número *</label>
+                                <input type="text" name="numero" id="numero" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Complemento</label>
+                                <input type="text" name="complemento" id="complemento" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>CEP *</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" name="cep" id="cep" class="form-control cep" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button" onclick="consulta_cep()"><i
+                                                class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Município *</label>
+                                <input type="text" name="municipio" id="municipio" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Estado *</label>
+                                <input type="text" name="uf" id="uf" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>E-mail *</label>
+                                <input type="text" name="e_mail" id="e_mail" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Telefone *</label>
+                                <input type="text" name="tel" id="tel" class="form-control tel" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Celular *</label>
+                                <input type="text" name="cel" id ="cel" class="form-control cel" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Tipo de cadastro</label>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="cliente" id="cliente" value="1">
+                                    <label class="form-check-label">Cliente</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="fornecedor" id="fornecedor" value="1">
+                                    <label class="form-check-label">Fornecedor</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="funcionario" id="funcionario" value="1">
+                                    <label class="form-check-label">Funcionario</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>* Campos Obrigatórios</p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="codigo" id="codigo">
+                    <button type="submit" class="btn btn-success btnSubmit">Cadastrar</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+                <div class="row">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Buscar</label>
+                            <div class="input-group mb-3">
+                                <input type="text" name="txtSearch" id="txtSearch" class="form-control">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" onclick="consulta_registros()"><i
+                                            class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table id="todos_registros" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">CPF/CNPJ</th>
+                                <th scope="col">Operações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    <script src="js/consultas.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/mask.js"></script>    
+</body>
+
+</html>
